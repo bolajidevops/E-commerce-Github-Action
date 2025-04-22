@@ -1,0 +1,33 @@
+{
+  "name": "ecommerceapp",
+  "version": "1.0.0",
+  "description": "this is my E-commerce application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --exit",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fumnanya92/E-commerce-Application.git"
+  },
+  "keywords": [
+    "capt\b\bstone"
+  ],
+  "author": "fumnanya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fumnanya92/E-commerce-Application/issues"
+  },
+  "homepage": "https://github.com/Fumnanya92/E-commerce-Application#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.53.0",
+    "jest": "^29.7.0",
+    "mocha": "^10.7.3",
+    "supertest": "^7.0.0"
+  }
+}
