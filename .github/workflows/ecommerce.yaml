@@ -1,0 +1,52 @@
+name: Deploy to AWS
+
+on:
+  push:
+    branches:
+      - main
+  # This workflow triggers on a push to the 'main' branch.
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: nodejs-app
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    # Specifies the runner environment.
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # Checks out your repository under $GITHUB_WORKSPACE.
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+        # Configures AWS credentials from GitHub secrets.
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        # Logs in to Amazon ECR.
+
+      - name: Build, tag, and push API Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}-api
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./api
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        # Builds and pushes the API Docker image.
+
+      - name: Build, tag, and push WebApp Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}-webapp
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./webapp
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        # Builds and pushes the WebApp Docker image.
