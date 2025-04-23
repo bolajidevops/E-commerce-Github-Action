@@ -70,3 +70,6 @@ The image below shows the Docker images for both frontend and backend in the ECR
 
 ![alt text](images/Ecr-Images.png)
 
+## Task 8: Continuous Deployment
+
+Configuring the workflows to deploy updates automatically to the cloud environment(AWS-ECR) when changes are pushed to the main branch.
