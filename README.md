@@ -72,4 +72,33 @@ The image below shows the Docker images for both frontend and backend in the ECR
 
 ## Task 8: Continuous Deployment
 
-Configuring the workflows to deploy updates automatically to the cloud environment(AWS-ECR) when changes are pushed to the main branch.
+## Creating a Task Definition
+
+- From the AWS Console -> ECS -> Task Definitions -> Creating new task Definition (node-js) -> Choosing launch type which is Fargate.
+
+- Container details -> Image URI (from ECR) and Port mappings (webapp:3000) (Api:8000)
+
+## Creating ECS Cluster
+
+![alt text](images/ECS-CLUSTER.png)
+
+## Creating a Service
+
+In the cluster section a service is created, the service type is (Fargate) and this is linked to the task defination created earlier.
+
+Configuring the workflows to deploy updates automatically to the cloud environment(AWS) when changes are pushed to the main branch.
+
+## Setting Application Load balancer to access the Applicaction Publicly.
+
+ An application load balancer is created and the Elastic container service is attached to the application load balancer target group. See images below.
+
+ ![alt text](images/ALB.png)
+
+ ![alt text](images/ECS-ALB.png)
+
+
+## Accessing the application through the Application load balancer DNS name.
+
+`http://nodejs-1823678697.us-east-1.elb.amazonaws.com/`
+
+![alt text](images/ALB-DNS.png)

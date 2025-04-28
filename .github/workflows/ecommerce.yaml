@@ -50,3 +50,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./webapp
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         # Builds and pushes the WebApp Docker image.
+
+      - name: Update service on AWS (ECS)
+        run: |
+          aws ecs update-service --cluster node-js --service node-js-service-7nhrfd3o --force-new-deployment
