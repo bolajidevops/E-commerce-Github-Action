@@ -50,7 +50,11 @@
 
  Writting a GitHub Actions workflow `ecommerce.yaml` for the backend and frontend that: Installs dependencies, Runs tests and Builds the application.
 
+ See images below.
+
 ![alt text](images/ecommerce-yaml.png)
+
+![alt text](images/build-action.png)
 
 ## Task 6: Docker Integration 
 
@@ -90,7 +94,9 @@ Configuring the workflows to deploy updates automatically to the cloud environme
 
 ## Setting Application Load balancer to access the Applicaction Publicly.
 
- An application load balancer is created and the Elastic container service is attached to the application load balancer target group. See images below.
+ An application load balancer is created and the Elastic container service is attached to the application load balancer target group.
+ 
+ See images below.
 
  ![alt text](images/ALB.png)
 
